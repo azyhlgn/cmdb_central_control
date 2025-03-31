@@ -1,0 +1,7 @@
+2025-03-31 20:58:04,012 - error_logger - ERROR - log_factory: Traceback (most recent call last):
+  File "/Users/zy/CMDB/CMDB_Central_Control/bin/start.py", line 19, in send_server_info
+    plugin_obj.process(host)
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/CpuPlugin.py", line 11, in process
+    raise Exception
+Exception
+

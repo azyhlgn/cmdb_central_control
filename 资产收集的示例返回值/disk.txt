@@ -1,0 +1,161 @@
+Adapter #0
+
+Enclosure Device ID: 32
+Slot Number: 0
+Drive's position: DiskGroup: 0, Span: 0, Arm: 0
+Device Id: 0
+WWN: 5000C500A1B2C3D4
+Sequence Number: 1
+Media Type: Hard Disk Device
+RAW Size: 3.637 TB
+Firmware state: Online
+SAS Address(0): 0x5000c500a1b2c3d4
+Connected Port Number: 0(path0)
+Inquiry Data: SEAGATE ST4000NM0033-9ZM0001 ABCDEFG001
+Media Error Count: 0
+Other Error Count: 0
+Predictive Failure Count: 0
+Last Predictive Failure Event: None
+PD Type: SAS
+Drive Temperature : 34C
+Smart Status: Healthy
+
+Enclosure Device ID: 32
+Slot Number: 1
+Drive's position: DiskGroup: 0, Span: 0, Arm: 1
+Device Id: 1
+WWN: 5000C500B2C3D4E5
+Sequence Number: 2
+Media Type: Hard Disk Device
+RAW Size: 3.637 TB
+Firmware state: Online
+SAS Address(0): 0x5000c500b2c3d4e5
+Connected Port Number: 1(path0)
+Inquiry Data: SEAGATE ST4000NM0033-9ZM0001 ABCDEFG002
+Media Error Count: 0
+Other Error Count: 0
+Predictive Failure Count: 0
+Last Predictive Failure Event: None
+PD Type: SAS
+Drive Temperature : 33C
+Smart Status: Healthy
+
+Enclosure Device ID: 32
+Slot Number: 2
+Drive's position: DiskGroup: 1, Span: 0, Arm: 0
+Device Id: 2
+WWN: 5000C500C3D4E5F6
+Sequence Number: 3
+Media Type: Solid State Device
+RAW Size: 1.819 TB
+Firmware state: Online
+SAS Address(0): 0x5000c500c3d4e5f6
+Connected Port Number: 2(path0)
+Inquiry Data: SAMSUNG MZ7LM1T9HCJM-00005 XYZ123001
+Media Error Count: 0
+Other Error Count: 0
+Predictive Failure Count: 0
+Last Predictive Failure Event: None
+PD Type: SAS
+Drive Temperature : 28C
+Smart Status: Healthy
+
+Enclosure Device ID: 32
+Slot Number: 3
+Drive's position: DiskGroup: 1, Span: 0, Arm: 1
+Device Id: 3
+WWN: 5000C500D4E5F6A7
+Sequence Number: 4
+Media Type: Solid State Device
+RAW Size: 1.819 TB
+Firmware state: Online
+SAS Address(0): 0x5000c500d4e5f6a7
+Connected Port Number: 3(path0)
+Inquiry Data: SAMSUNG MZ7LM1T9HCJM-00005 XYZ123002
+Media Error Count: 0
+Other Error Count: 0
+Predictive Failure Count: 0
+Last Predictive Failure Event: None
+PD Type: SAS
+Drive Temperature : 27C
+Smart Status: Healthy
+
+Enclosure Device ID: 32
+Slot Number: 4
+Drive's position: DiskGroup: 2, Span: 0, Arm: 0
+Device Id: 4
+WWN: 5000C500E5F6A7B8
+Sequence Number: 5
+Media Type: Hard Disk Device
+RAW Size: 6.000 TB
+Firmware state: Online
+SAS Address(0): 0x5000c500e5f6a7b8
+Connected Port Number: 4(path0)
+Inquiry Data: TOSHIBA MG06ACA600A PQRS456001
+Media Error Count: 0
+Other Error Count: 0
+Predictive Failure Count: 0
+Last Predictive Failure Event: None
+PD Type: SATA
+Drive Temperature : 35C
+Smart Status: Healthy
+
+Enclosure Device ID: 32
+Slot Number: 5
+Drive's position: DiskGroup: 2, Span: 0, Arm: 1
+Device Id: 5
+WWN: 5000C500F6A7B8C9
+Sequence Number: 6
+Media Type: Hard Disk Device
+RAW Size: 6.000 TB
+Firmware state: Online
+SAS Address(0): 0x5000c500f6a7b8c9
+Connected Port Number: 5(path0)
+Inquiry Data: TOSHIBA MG06ACA600A PQRS456002
+Media Error Count: 0
+Other Error Count: 0
+Predictive Failure Count: 0
+Last Predictive Failure Event: None
+PD Type: SATA
+Drive Temperature : 36C
+Smart Status: Healthy
+
+Enclosure Device ID: 32
+Slot Number: 6
+Drive's position: DiskGroup: 3, Span: 0, Arm: 0
+Device Id: 6
+WWN: 5000C500A7B8C9DA
+Sequence Number: 7
+Media Type: Solid State Device
+RAW Size: 3.276 TB
+Firmware state: Online
+SAS Address(0): 0x5000c500a7b8c9da
+Connected Port Number: 6(path0)
+Inquiry Data: INTEL SSDSC2KG038T7 L987654001
+Media Error Count: 0
+Other Error Count: 0
+Predictive Failure Count: 0
+Last Predictive Failure Event: None
+PD Type: SAS
+Drive Temperature : 30C
+Smart Status: Healthy
+
+Enclosure Device ID: 32
+Slot Number: 7
+Drive's position: DiskGroup: 3, Span: 0, Arm: 1
+Device Id: 7
+WWN: 5000C500B8C9DAEB
+Sequence Number: 8
+Media Type: Solid State Device
+RAW Size: 3.276 TB
+Firmware state: Online
+SAS Address(0): 0x5000c500b8c9daeb
+Connected Port Number: 7(path0)
+Inquiry Data: INTEL SSDSC2KG038T7 L987654002
+Media Error Count: 0
+Other Error Count: 0
+Predictive Failure Count: 0
+Last Predictive Failure Event: None
+PD Type: SAS
+Drive Temperature : 29C
+Smart Status: Healthy

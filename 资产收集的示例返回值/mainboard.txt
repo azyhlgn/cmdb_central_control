@@ -1,0 +1,68 @@
+# dmidecode 3.4
+Getting SMBIOS data from sysfs.
+SMBIOS 3.3.0 present.
+
+Handle 0x0001, DMI type 1, 27 bytes
+System Information
+	Manufacturer: Dell Inc.
+	Product Name: PowerEdge R750
+	Version: Not Specified
+	Serial Number: ABC123456789
+	UUID: 4c4c4544-1234-5678-9abc-def123456789
+	Wake-up Type: AC Power Restore
+	SKU Number: SKU-1234-5678
+	Family: PowerEdge
+
+Handle 0x001A, DMI type 32, 11 bytes
+System Boot Information
+	Status: No errors detected
+
+Handle 0x001B, DMI type 15, 29 bytes
+System Event Log
+	Area Length: 1024 bytes
+	Header Start Offset: 0x0000
+	Data Start Offset: 0x0100
+
+Handle 0x001C, DMI type 23, 13 bytes
+System Reset
+	Status: Enabled
+	Watchdog Timer: Not Present
+
+Handle 0x001D, DMI type 24, 5 bytes
+Hardware Security
+	Power-On Password Status: Disabled
+	Keyboard Password Status: Not Implemented
+	Administrator Password Status: Disabled
+
+Handle 0x001E, DMI type 28, 18 bytes
+Temperature Probe
+	Description: CPU Temp
+	Location: Processor
+	Status: OK
+	Maximum Value: 100.0 C
+	Resolution: 1.0 C
+	Tolerance: 0.5 C
+
+Handle 0x001F, DMI type 29, 22 bytes
+Electrical Current Probe
+	Description: System Current
+	Location: Power Unit
+	Status: OK
+	Maximum Value: 32.000 A
+	Resolution: 0.001 A
+
+Handle 0x0020, DMI type 3, 21 bytes
+Chassis Information
+	Manufacturer: Dell Inc.
+	Type: Rack Mount Chassis
+	Lock: Not Present
+	Version: 1.0
+	Serial Number: CHASSIS123456
+	Asset Tag: Asset-1234
+	Boot-up State: Safe
+	Power Supply State: Safe
+	Thermal State: Safe
+	Security Status: None
+	Height: 2U
+	Power Cords: 2
+	Contained Elements: 1
