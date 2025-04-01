@@ -7,7 +7,7 @@ from lib.conf.config import settings
 class NicPlugin(BasePlugin.BasePlugin):
     test_mode = True
 
-    def process(self, host,executor):
+    def process(self, host, executor):
         if settings.TEST_MODE:
             content = []
             with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/nic_link.txt', 'r') as f:
@@ -18,7 +18,8 @@ class NicPlugin(BasePlugin.BasePlugin):
             content = '\n'.join(content)
             return self.parse(content)
 
-        content = executor(host, 'dmidecode -q -t 17 2>/dev/null')
+        content = [executor(host, 'ip -o link show'), executor(host, 'ip -o addr show')]
+        content = '\n'.join(content)
         return self.parse(content)
 
     @staticmethod
@@ -38,9 +39,9 @@ class NicPlugin(BasePlugin.BasePlugin):
                 # 按space分割部分
                 parts = re.split(r'\s+', line)
                 if_name = parts[1].replace(':', '')
-                mac = parts[parts.index('brd')-1] if 'link/ether' in line else None
-                state = parts[parts.index('state')+1]
-                mtu = parts[parts.index('mtu')+1].replace("mtu", "")
+                mac = parts[parts.index('brd') - 1] if 'link/ether' in line else None
+                state = parts[parts.index('state') + 1]
+                mtu = parts[parts.index('mtu') + 1].replace("mtu", "")
 
                 current_nic = {
                     "name": if_name,
@@ -59,7 +60,7 @@ class NicPlugin(BasePlugin.BasePlugin):
                 ip_family = "ipv6" if "inet6" in line else "ipv4"
                 ip_cidr = parts[3]
                 ip, cidr = ip_cidr.split('/') if '/' in ip_cidr else (ip_cidr, None)
-                scope = parts[parts.index('scope')+1]
+                scope = parts[parts.index('scope') + 1]
 
                 # 关联到当前网卡
                 for nic in response:
@@ -73,6 +74,3 @@ class NicPlugin(BasePlugin.BasePlugin):
 
         print(response)
         return response
-
-
-# NicPlugin().process("123")

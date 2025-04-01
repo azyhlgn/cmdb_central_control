@@ -1,8 +1,10 @@
+from salt import client
+
+from lib.conf.config import settings
 
 
 def saltstack_executor(host, command):
+    local = client.LocalClient()
+    result = local.cmd(host, 'cmd.run', command)
 
-    result = 'alsdkfjaklsdfjdsf'
-
-
-    return result.decode('utf-8')
+    return result.decode(settings.EXECUTOR_ENCODING)

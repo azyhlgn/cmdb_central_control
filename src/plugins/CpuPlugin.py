@@ -4,15 +4,14 @@ from lib.conf.config import settings
 
 class CpuPlugin(BasePlugin.BasePlugin):
 
-    def process(self,host, executor):
+    def process(self, host, executor):
 
         if settings.TEST_MODE:
             with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/cpu.txt', 'r') as f:
-
                 content = f.read()
             return self.parse(content)
 
-        content = executor(host,'cat /proc/cpuinfo')
+        content = executor(host, 'cat /proc/cpuinfo')
         return self.parse(content)
 
     @staticmethod
@@ -43,5 +42,3 @@ class CpuPlugin(BasePlugin.BasePlugin):
         print(response)
 
         return response
-
-

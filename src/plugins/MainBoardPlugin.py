@@ -10,7 +10,7 @@ class MainBoardPlugin(BasePlugin):
                 content = f.read()
             return self.parse(content)
 
-        content = executor(host, 'MegaCli -PDList -aAll')
+        content = executor(host, 'dmidecode -t1')
         return self.parse(content)
 
     @staticmethod
