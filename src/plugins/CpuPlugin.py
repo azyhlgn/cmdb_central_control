@@ -1,20 +1,18 @@
 from src.plugins import BasePlugin
-from lib.executor.paramiko_executor import paramiko_executor
-
-from config import setting
+from lib.conf.config import settings
 
 
 class CpuPlugin(BasePlugin.BasePlugin):
 
-    def process(self,host):
+    def process(self,host, executor):
 
-        if setting.TEST_MODE:
+        if settings.TEST_MODE:
             with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/cpu.txt', 'r') as f:
 
                 content = f.read()
             return self.parse(content)
 
-        content = paramiko_executor(host,'cat /proc/cpuinfo')
+        content = executor(host,'cat /proc/cpuinfo')
         return self.parse(content)
 
     @staticmethod

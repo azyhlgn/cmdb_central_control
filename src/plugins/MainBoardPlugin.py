@@ -1,18 +1,16 @@
 from src.plugins.BasePlugin import BasePlugin
-from lib.executor.paramiko_executor import paramiko_executor
-
-from config import setting
+from lib.conf.config import settings
 
 
 class MainBoardPlugin(BasePlugin):
 
-    def process(self, host):
-        if setting.TEST_MODE:
+    def process(self, host,executor):
+        if settings.TEST_MODE:
             with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/mainboard.txt', 'r') as f:
                 content = f.read()
             return self.parse(content)
 
-        content = paramiko_executor(host, 'MegaCli -PDList -aAll')
+        content = executor(host, 'MegaCli -PDList -aAll')
         return self.parse(content)
 
     @staticmethod

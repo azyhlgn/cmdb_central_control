@@ -1,15 +1,14 @@
 import re
 
 from src.plugins import BasePlugin
-from lib.executor.paramiko_executor import paramiko_executor
-from config import setting
+from lib.conf.config import settings
 
 
 class NicPlugin(BasePlugin.BasePlugin):
     test_mode = True
 
-    def process(self, host):
-        if setting.TEST_MODE:
+    def process(self, host,executor):
+        if settings.TEST_MODE:
             content = []
             with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/nic_link.txt', 'r') as f:
                 content.append(f.read())
@@ -19,7 +18,7 @@ class NicPlugin(BasePlugin.BasePlugin):
             content = '\n'.join(content)
             return self.parse(content)
 
-        content = paramiko_executor(host, 'dmidecode -q -t 17 2>/dev/null')
+        content = executor(host, 'dmidecode -q -t 17 2>/dev/null')
         return self.parse(content)
 
     @staticmethod

@@ -5,3 +5,21 @@
     raise Exception
 Exception
 
+2025-04-01 19:08:04,880 - error_logger - ERROR - log_factory: Traceback (most recent call last):
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/__init__.py", line 17, in get_server_info
+    data = plugin_obj.process(host,executor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/MainBoardPlugin.py", line 8, in process
+    if settings.TEST_MODE:
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'config.settings' has no attribute 'TEST_MODE'
+
+2025-04-01 19:08:28,322 - error_logger - ERROR - log_factory: Traceback (most recent call last):
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/__init__.py", line 17, in get_server_info
+    data = plugin_obj.process(host,executor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/MainBoardPlugin.py", line 8, in process
+    if settings.TEST_MODE:
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'config.settings' has no attribute 'TEST_MODE'
+

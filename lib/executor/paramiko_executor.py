@@ -12,3 +12,7 @@ def paramiko_executor(host, command):
     ssh.close()
 
     return result.decode('utf-8')
+
+
+print(dir())
+print([name for name in dir() if name.endswith('s__')])
