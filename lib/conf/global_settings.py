@@ -2,20 +2,20 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-TEST_MODE = True
+TEST_MODE = False
 
 PLUGINS_DICT = {
-    'DiskPlugin': 'src.plugins.DiskPlugin',
-    'CpuPlugin': 'src.plugins.CpuPlugin',
-    'MainBoardPlugin': 'src.plugins.MainBoardPlugin',
-    'MemoryPlugin': 'src.plugins.MemoryPlugin',
-    'NicPlugin': 'src.plugins.NicPlugin',
+    # 'DiskPlugin': 'src.plugins.DiskPlugin.DiskPlugin',
+    'CpuPlugin': 'src.plugins.CpuPlugin.CpuPlugin',
+    'MainBoardPlugin': 'src.plugins.MainBoardPlugin.MainBoardPlugin',
+    'MemoryPlugin': 'src.plugins.MemoryPlugin.MemoryPlugin',
+    'NicPlugin': 'src.plugins.NicPlugin.NicPlugin',
 }
 
 EXECUTOR_DICT = {
-    'agent': 'lib.executor.agent_executor',
-    'paramiko': 'lib.executor.paramiko_executor',
-    'salt': 'lib.executor.saltstack_executor',
+    'agent': 'lib.executor.agent_executor.agent_executor',
+    'paramiko': 'lib.executor.paramiko_executor.paramiko_executor',
+    'salt': 'lib.executor.saltstack_executor.saltstack_executor',
 }
 
 EXECUTOR_MODE = 'paramiko'

@@ -1,0 +1,12 @@
+2025-04-02 23:08:45,411 - error_logger - ERROR - log_factory: Traceback (most recent call last):
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/__init__.py", line 43, in get_server_info
+    loop.run_until_complete(asyncio.gather(*task_list))
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/CpuPlugin.py", line 14, in process
+    content = await executor(host, 'cat /proc/cpuinfo')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zy/CMDB/CMDB_Central_Control/lib/executor/paramiko_executor.py", line 11, in paramiko_executor
+    stdin, stdout, stderr = await ssh.exec_command(command)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object tuple can't be used in 'await' expression
+
