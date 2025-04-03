@@ -1,18 +1,27 @@
+import traceback
+
 from src.plugins import BasePlugin
 from lib.conf.config import settings
+from log.log_factory import error_logger
 
 
 class CpuPlugin(BasePlugin.BasePlugin):
 
-    def process(self, host, executor):
+    def process(self, host, executor, response):
+        try:
+            if settings.TEST_MODE:
+                with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/cpu.txt', 'r') as f:
+                    content = f.read()
+                response.data = self.parse(content)
+                return response.dict
 
-        if settings.TEST_MODE:
-            with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/cpu.txt', 'r') as f:
-                content = f.read()
-            return self.parse(content)
-
-        content = executor(host, 'cat /proc/cpuinfo')
-        return self.parse(content)
+            content = executor(host, 'cat /proc/cpuinfo')
+            response.data = self.parse(content)
+        except Exception:
+            error_logger.error(traceback.format_exc())
+            response.status = False
+            response.error = traceback.format_exc()
+        return response.dict
 
     @staticmethod
     def parse(content):
@@ -38,7 +47,5 @@ class CpuPlugin(BasePlugin.BasePlugin):
                     if not response['cpu_model']:
                         response['cpu_model'] = value
         response['cpu_physical_count'] = len(cpu_physical_set)
-
-        print(response)
 
         return response

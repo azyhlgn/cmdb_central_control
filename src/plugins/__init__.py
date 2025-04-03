@@ -1,12 +1,12 @@
 import importlib
 import traceback
-import asyncio
-import uvloop
+import json
+import requests
+import pprint
 
 from lib.conf.config import settings
 from log.log_factory import error_logger
-
-# asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+from lib.response.BaseResponse import BaseResponse
 
 
 def import_string(dotted_path):
@@ -16,7 +16,7 @@ def import_string(dotted_path):
 
 
 def get_server_info(host=None):
-    # task_list = []
+    data_dict = {}
 
     # 获得处理机
     executor_path = settings.EXECUTOR_DICT[settings.EXECUTOR_MODE]
@@ -27,16 +27,24 @@ def get_server_info(host=None):
         plugin_obj = import_string(value)()
 
         try:
-            data = plugin_obj.process(host, executor)
+            data_dict[key] = plugin_obj.process(host, executor, BaseResponse())
         except Exception:
             error_logger.error(traceback.format_exc())
 
+    print(json.dumps(data_dict))
 
-        # # 放入事件循环
-        # try:
-        #     task_list.append(plugin_obj.process(host, executor))
-        # except Exception as e:
-        #     print(e)
+    ret = requests.post(
+        settings.API_ASSET_URL,
+        json=json.dumps(data_dict),
+        headers={'Content-Type': 'application/json'},
+    )
+    print(ret.text)
+
+    # # 放入事件循环
+    # try:
+    #     task_list.append(plugin_obj.process(host, executor))
+    # except Exception as e:
+    #     print(e)
 
     # try:
     #     # 在主线程中，调用get_event_loop总能返回属于主线程的event loop对象
@@ -50,5 +58,3 @@ def get_server_info(host=None):
     #     loop.run_until_complete(asyncio.gather(*task_list))
     # except Exception as e:
     #     error_logger.error(traceback.format_exc())
-
-

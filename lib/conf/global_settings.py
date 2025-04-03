@@ -1,15 +1,18 @@
+import json
 import os
+
+import requests
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-TEST_MODE = False
+TEST_MODE = True
 
 PLUGINS_DICT = {
-    # 'DiskPlugin': 'src.plugins.DiskPlugin.DiskPlugin',
-    'CpuPlugin': 'src.plugins.CpuPlugin.CpuPlugin',
-    'MainBoardPlugin': 'src.plugins.MainBoardPlugin.MainBoardPlugin',
-    'MemoryPlugin': 'src.plugins.MemoryPlugin.MemoryPlugin',
-    'NicPlugin': 'src.plugins.NicPlugin.NicPlugin',
+    'Disk': 'src.plugins.DiskPlugin.DiskPlugin',
+    'Cpu': 'src.plugins.CpuPlugin.CpuPlugin',
+    'MainBoard': 'src.plugins.MainBoardPlugin.MainBoardPlugin',
+    'Memory': 'src.plugins.MemoryPlugin.MemoryPlugin',
+    'Nic': 'src.plugins.NicPlugin.NicPlugin',
 }
 
 EXECUTOR_DICT = {
@@ -27,12 +30,12 @@ ERROR_LOG_FILE = os.path.join(BASE_DIR, "log", 'error.log')
 # 运行日志
 RUN_LOG_FILE = os.path.join(BASE_DIR, "log", 'run.log')
 
-
 # SSH模式 参数
 SSH_PORT = 22
 SSH_USER = 'root'
 SSH_PASSWORD = 'root'
 
-
 # executor返回值编码格式
 EXECUTOR_ENCODING = 'utf-8'
+
+API_ASSET_URL = 'http://127.0.0.1:8000/asset/'

@@ -1,26 +1,36 @@
 import re
+import traceback
 
 from src.plugins import BasePlugin
 from lib.conf.config import settings
-
+from log.log_factory import error_logger
 
 class NicPlugin(BasePlugin.BasePlugin):
     test_mode = True
 
-    def process(self, host, executor):
-        if settings.TEST_MODE:
-            content = []
-            with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/nic_link.txt', 'r') as f:
-                content.append(f.read())
-            with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/nic_addr.txt', 'r') as f:
-                content.append(f.read())
+    def process(self, host, executor, response):
+        try:
+            if settings.TEST_MODE:
+                content = []
+                with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/nic_link.txt', 'r') as f:
+                    content.append(f.read())
+                with open('/Users/zy/CMDB/CMDB_Central_Control/资产收集的示例返回值/nic_addr.txt', 'r') as f:
+                    content.append(f.read())
 
+                content = '\n'.join(content)
+                response.data = self.parse(content)
+                return response.dict
+
+            content = [executor(host, 'ip -o link show'), executor(host, 'ip -o addr show')]
             content = '\n'.join(content)
-            return self.parse(content)
+            response.data = self.parse(content)
+            return response.dict
 
-        content = [executor(host, 'ip -o link show'), executor(host, 'ip -o addr show')]
-        content = '\n'.join(content)
-        return self.parse(content)
+        except Exception:
+            error_logger.error(traceback.format_exc())
+            response.status = False
+            response.error = traceback.format_exc()
+        return response.dict
 
     @staticmethod
     def parse(content):
@@ -29,7 +39,7 @@ class NicPlugin(BasePlugin.BasePlugin):
                 :param content: shell 命令结果
                 :return:解析后的结果
                 """
-        response = []
+        response = {}
 
         for line in content.splitlines():
             line = line.strip()
@@ -48,10 +58,10 @@ class NicPlugin(BasePlugin.BasePlugin):
                     "mac": mac,
                     "state": state,
                     "mtu": mtu,
-                    "ipv4": [],
-                    "ipv6": []
+                    "ipv4": {},
+                    "ipv6": {}
                 }
-                response.append(current_nic)
+                response[if_name] = current_nic
 
             # 逐行分析ip -o addr show 命令结果
             elif "inet" in line:
@@ -63,14 +73,13 @@ class NicPlugin(BasePlugin.BasePlugin):
                 scope = parts[parts.index('scope') + 1]
 
                 # 关联到当前网卡
-                for nic in response:
-                    if nic["name"] == if_name:
-                        nic[ip_family].append({
+                for nic in response.keys():
+                    if nic == if_name:
+                        response[nic][ip_family][ip] = {
                             "address": ip,
                             "cidr": cidr,
                             "scope": scope
-                        })
+                        }
                         break
 
-        print(response)
         return response

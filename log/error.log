@@ -10,3 +10,13 @@
                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: object tuple can't be used in 'await' expression
 
+2025-04-03 23:56:50,268 - error_logger - ERROR - log_factory: Traceback (most recent call last):
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/CpuPlugin.py", line 12, in process
+    raise StopIteration
+StopIteration
+
+2025-04-03 23:57:34,403 - error_logger - ERROR - log_factory: Traceback (most recent call last):
+  File "/Users/zy/CMDB/CMDB_Central_Control/src/plugins/CpuPlugin.py", line 12, in process
+    raise StopIteration
+StopIteration
+

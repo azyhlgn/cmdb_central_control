@@ -3,6 +3,8 @@ import sys
 # import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
+import requests
+
 os.environ['USER_SETTINGS'] = 'config.settings'
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -13,10 +15,14 @@ thread_pool = ThreadPoolExecutor(max_workers=5)
 
 
 def get_host_list():
-    # 需要改成从API接口获得从数据库得到的当天未收集资产的hostlist
-    # host_list = ['192.168.22.129']
-    host_list = ['192.168.22.129','192.168.22.129','192.168.22.129',]
-    return host_list
+    # if settings.TEST_MODE:
+    #
+    #     # 需要改成从API接口获得从数据库得到的当天未收集资产的hostlist
+    #     host_list = ['192.168.22.129']
+    #     return host_list
+
+    host_list = requests.get(settings.API_ASSET_URL)
+    return host_list.json()
 
 
 def run():
