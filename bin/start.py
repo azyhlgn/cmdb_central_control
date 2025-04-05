@@ -1,5 +1,6 @@
 import os
 import sys
+import traceback
 # import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
@@ -10,9 +11,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from lib.conf.config import settings
 from src.plugins import get_server_info
+from log.log_factory import run_logger
 
 thread_pool = ThreadPoolExecutor(max_workers=5)
-
 
 def get_host_list():
     # if settings.TEST_MODE:
@@ -32,7 +33,10 @@ def run():
 
 
 if __name__ == '__main__':
+
     if settings.EXECUTOR_MODE == 'agent':
         get_server_info()
 
     run()
+
+

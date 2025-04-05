@@ -5,14 +5,21 @@ import requests
 import pprint
 
 from lib.conf.config import settings
-from log.log_factory import error_logger
+from log.log_factory import error_logger,run_logger
 from lib.response.BaseResponse import BaseResponse
 
 
 def import_string(dotted_path):
+
     module_path, class_name = dotted_path.rsplit('.', maxsplit=1)
-    module = importlib.import_module(module_path)
-    return getattr(module, class_name)
+    try:    # importlib的这个方法 出错以后 异常不会外抛？？
+        module = importlib.import_module(module_path)
+    except Exception as e:
+        run_logger.error(traceback.format_exc())
+
+    if module:
+        return getattr(module, class_name)
+
 
 
 def get_server_info(host=None):
@@ -22,6 +29,7 @@ def get_server_info(host=None):
     executor_path = settings.EXECUTOR_DICT[settings.EXECUTOR_MODE]
     executor = import_string(executor_path)
 
+
     for key, value in settings.PLUGINS_DICT.items():
         # 字符串导入插件 并且实例化
         plugin_obj = import_string(value)()
@@ -30,15 +38,14 @@ def get_server_info(host=None):
             data_dict[key] = plugin_obj.process(host, executor, BaseResponse())
         except Exception:
             error_logger.error(traceback.format_exc())
-
     print(json.dumps(data_dict))
 
     ret = requests.post(
         settings.API_ASSET_URL,
-        json=json.dumps(data_dict),
+        data=json.dumps(data_dict).encode('utf-8'),
+        # json=json.dumps(data_dict),
         headers={'Content-Type': 'application/json'},
     )
-    print(ret.text)
 
     # # 放入事件循环
     # try:

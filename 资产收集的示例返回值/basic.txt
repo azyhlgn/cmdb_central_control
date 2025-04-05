@@ -1,0 +1,1 @@
+hostname: myserver | os_platform: CentOS Stream 9 | os_version: 9

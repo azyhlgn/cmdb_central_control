@@ -1,6 +1,6 @@
 import re
 import traceback
-
+import json
 from src.plugins import BasePlugin
 from lib.conf.config import settings
 from log.log_factory import error_logger
@@ -40,6 +40,7 @@ class NicPlugin(BasePlugin.BasePlugin):
                 :return:解析后的结果
                 """
         response = {}
+        # TODO 需要修改一下 适配数据库的数据结构
 
         for line in content.splitlines():
             line = line.strip()
@@ -51,15 +52,12 @@ class NicPlugin(BasePlugin.BasePlugin):
                 if_name = parts[1].replace(':', '')
                 mac = parts[parts.index('brd') - 1] if 'link/ether' in line else None
                 state = parts[parts.index('state') + 1]
-                mtu = parts[parts.index('mtu') + 1].replace("mtu", "")
 
                 current_nic = {
                     "name": if_name,
-                    "mac": mac,
-                    "state": state,
-                    "mtu": mtu,
-                    "ipv4": {},
-                    "ipv6": {}
+                    "hwaddr": mac,
+                    'ipaddrs_netmask': {},
+                    "up": state,
                 }
                 response[if_name] = current_nic
 
@@ -69,17 +67,11 @@ class NicPlugin(BasePlugin.BasePlugin):
                 if_name = parts[1]
                 ip_family = "ipv6" if "inet6" in line else "ipv4"
                 ip_cidr = parts[3]
-                ip, cidr = ip_cidr.split('/') if '/' in ip_cidr else (ip_cidr, None)
-                scope = parts[parts.index('scope') + 1]
 
                 # 关联到当前网卡
                 for nic in response.keys():
                     if nic == if_name:
-                        response[nic][ip_family][ip] = {
-                            "address": ip,
-                            "cidr": cidr,
-                            "scope": scope
-                        }
+                        response[nic]['ipaddrs_netmask'][ip_family] = ip_cidr
                         break
-
+        print(json.dumps(response))
         return response

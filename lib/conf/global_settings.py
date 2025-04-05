@@ -13,6 +13,7 @@ PLUGINS_DICT = {
     'MainBoard': 'src.plugins.MainBoardPlugin.MainBoardPlugin',
     'Memory': 'src.plugins.MemoryPlugin.MemoryPlugin',
     'Nic': 'src.plugins.NicPlugin.NicPlugin',
+    'Basic': 'src.plugins.BasicPlugin.BasicPlugin',
 }
 
 EXECUTOR_DICT = {
