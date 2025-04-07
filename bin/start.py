@@ -11,9 +11,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from lib.conf.config import settings
 from src.plugins import get_server_info
-from log.log_factory import run_logger
 
 thread_pool = ThreadPoolExecutor(max_workers=5)
+
 
 def get_host_list():
     # if settings.TEST_MODE:
@@ -38,5 +38,3 @@ if __name__ == '__main__':
         get_server_info()
 
     run()
-
-

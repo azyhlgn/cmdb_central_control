@@ -8,12 +8,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 TEST_MODE = True
 
 PLUGINS_DICT = {
-    'Disk': 'src.plugins.DiskPlugin.DiskPlugin',
-    'Cpu': 'src.plugins.CpuPlugin.CpuPlugin',
-    'MainBoard': 'src.plugins.MainBoardPlugin.MainBoardPlugin',
-    'Memory': 'src.plugins.MemoryPlugin.MemoryPlugin',
-    'Nic': 'src.plugins.NicPlugin.NicPlugin',
     'Basic': 'src.plugins.BasicPlugin.BasicPlugin',
+    'MainBoard': 'src.plugins.MainBoardPlugin.MainBoardPlugin',
+    'Cpu': 'src.plugins.CpuPlugin.CpuPlugin',
+
+    'Disk': 'src.plugins.DiskPlugin.DiskPlugin',
+    'Memory': 'src.plugins.MemoryPlugin.MemoryPlugin',
+    'NIC': 'src.plugins.NicPlugin.NicPlugin',
 }
 
 EXECUTOR_DICT = {
